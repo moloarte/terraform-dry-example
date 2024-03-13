@@ -1,0 +1,12 @@
+{
+  "default_tags": {
+    "Env": "dev",
+    "Managed-by": "terraform",
+    "Expense_type": "r_and_d"
+  },
+  "account_id": 590183854060,
+  "environment_name": "dev",
+  "profile": "demo_dev",
+  "region": "us-east-1",
+  "remote_states_bucket": "dev-remote-state-dod24-demo20240312230801118300000001"
+}

@@ -1,0 +1,6 @@
+{
+  "enabled": true,
+  "name": "eks-admin-role",
+  "tags": {
+  }
+}

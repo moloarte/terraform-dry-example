@@ -1,0 +1,12 @@
+{
+  "default_tags": {
+    "Env": "uat",
+    "Managed-by": "terraform",
+    "Expense_type": "r_and_d"
+  },
+  "account_id": 590183854060,
+  "environment_name": "uat",
+  "profile": "demo_uat",
+  "region": "us-east-1",
+  "remote_states_bucket": "uat-remote-state-dod24-demo20240316220901439900000001"
+}
