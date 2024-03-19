@@ -7,7 +7,7 @@ inputs = {
 }
 
 include "additional_variables" {
-  path = format("%s/_sources/additional-variables/main.hcl", get_path_to_repo_root())
+  path = format("%s/_sources/generated-files/additional-variables.hcl", get_path_to_repo_root())
 }
 
 remote_state {

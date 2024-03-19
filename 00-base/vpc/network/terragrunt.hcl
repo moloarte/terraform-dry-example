@@ -4,7 +4,7 @@ include "root" {
 }
 
 include "provider_aws" {
-  path = "${get_path_to_repo_root()}/_sources/provider-aws/main.hcl"
+  path = "${get_path_to_repo_root()}/_sources/generated-files/providers/aws/main.hcl"
 }
 
 terraform {

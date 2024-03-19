@@ -4,9 +4,9 @@
     "Managed-by": "terraform",
     "Expense_type": "r_and_d"
   },
-  "account_id": 590183854060,
+  "account_id": 123456789123,
   "environment_name": "dev",
-  "profile": "demo_dev",
+  "profile": "UPDATEME",
   "region": "us-east-1",
-  "remote_states_bucket": "dev-remote-state-dod24-demo20240312230801118300000001"
+  "remote_states_bucket": "UPDATEME"
 }

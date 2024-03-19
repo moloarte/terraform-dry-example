@@ -21,7 +21,7 @@ include "root" {
 }
 
 include "provider_aws" {
-  path = format("%s/_sources/provider-aws/main.hcl", get_path_to_repo_root())
+  path = format("%s/_sources/generated-files/providers/aws/main.hcl", get_path_to_repo_root())
 }
 
 include "provider_kubernetes" {

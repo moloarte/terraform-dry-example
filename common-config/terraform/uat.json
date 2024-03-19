@@ -2,11 +2,11 @@
   "default_tags": {
     "Env": "uat",
     "Managed-by": "terraform",
-    "Expense_type": "r_and_d"
+    "Expense_type": "cogs"
   },
-  "account_id": 590183854060,
+  "account_id": 123456789123,
   "environment_name": "uat",
-  "profile": "demo_uat",
+  "profile": "UPDATEME",
   "region": "us-east-1",
-  "remote_states_bucket": "uat-remote-state-dod24-demo20240316220901439900000001"
+  "remote_states_bucket": "UPDATEME"
 }
