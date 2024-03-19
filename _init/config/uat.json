@@ -1,0 +1,6 @@
+{
+  "tags": {
+    "Maintainer": "peter@example.com",
+    "Purpose": "terraform-dry-demo"
+  }
+}

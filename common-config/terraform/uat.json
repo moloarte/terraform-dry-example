@@ -1,0 +1,12 @@
+{
+  "default_tags": {
+    "Env": "uat",
+    "Managed-by": "terraform",
+    "Expense_type": "cogs"
+  },
+  "account_id": 123456789123,
+  "environment_name": "uat",
+  "profile": "UPDATEME",
+  "region": "us-east-1",
+  "remote_states_bucket": "UPDATEME"
+}

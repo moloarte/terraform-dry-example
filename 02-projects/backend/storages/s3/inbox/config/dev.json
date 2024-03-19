@@ -1,0 +1,20 @@
+{
+  "enabled": true,
+  "bucket_prefix": "inbox",
+  "lifecycle_rules": [
+    {
+      "id": "new-documents",
+      "enabled": true,
+      "filter": {
+        "prefix": "unprocessed/"
+      },
+      "expiration": {
+        "days": 7
+      }
+    }
+  ],
+  "tags": {
+    "Maintainer": "pedro@ejemplo.es",
+    "Team": "backend"
+  }
+}
