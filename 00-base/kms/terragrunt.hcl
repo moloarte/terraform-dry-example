@@ -3,6 +3,11 @@ include "root" {
   expose = true
 }
 
+include "configuration" {
+  path   = format("./config/%s.hcl", get_env("TF_VAR_env_name"))
+  expose = true
+}
+
 include "provider_aws" {
   path = format("%s/_sources/generated-files/providers/aws/main.hcl", get_path_to_repo_root())
 }
