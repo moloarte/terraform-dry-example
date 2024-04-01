@@ -9,3 +9,7 @@ output "kms_key_alias" {
 output "s3_bucket_name" {
   value = aws_s3_bucket.s3.id
 }
+
+output "dynamo_table_name" {
+  value = aws_dynamodb_table.terraform_state_lock.name
+}

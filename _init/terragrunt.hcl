@@ -1,13 +1,13 @@
-include "root" {
-  path = find_in_parent_folders()
+locals {
+  environment_vars = read_terragrunt_config("${get_path_to_repo_root()}/common-config/terragrunt/${get_env("TF_VAR_env_name")}.hcl")
 }
 
 inputs = {
-  tg_path_relative_from_root = path_relative_to_include("root")
-}
-
-include "additional_variables" {
-  path = format("%s/_sources/generated-files/additional-variables.hcl", get_path_to_repo_root())
+  tg_path_relative_from_root = get_path_to_repo_root()
+  environment_name           = get_env("TF_VAR_env_name")
+  region                     = local.environment_vars.inputs.region
+  profile                    = local.environment_vars.inputs.profile
+  remote_states_bucket       = local.environment_vars.inputs.bucket
 }
 
 remote_state {
@@ -22,13 +22,11 @@ terraform {
     commands = [
       "init",
       "output",
-      "state",
-      "force-unlock"
     ]
 
     env_vars = {
-      TF_DATA_DIR         = format("%s/.terraform/%s", get_terragrunt_dir(), get_env("TF_VAR_env_name"))
-      TF_PLUGIN_CACHE_DIR = format("%s/.terraform.d/plugin-cache/", get_repo_root())
+      TF_DATA_DIR         = "${get_terragrunt_dir()}/.terraform/${get_env("TF_VAR_env_name")}"
+      TF_PLUGIN_CACHE_DIR = "${get_path_to_repo_root()}/.terraform.d/plugin-cache/"
     }
   }
 
@@ -37,22 +35,25 @@ terraform {
       "apply",
       "plan",
       "import",
-      "push",
       "destroy",
       "refresh",
-      "apply-all",
-      "destroy-all"
     ]
 
     arguments = [
-      format("-var-file=%s/common-config/terraform/%s.json", get_repo_root(), get_env("TF_VAR_env_name")),
-      format("-var-file=%s/config/%s.json", get_terragrunt_dir(), get_env("TF_VAR_env_name")),
       "-compact-warnings"
     ]
 
+    optional_var_files = [
+      "${get_terragrunt_dir()}/config/${get_env("TF_VAR_env_name")}.json"
+    ]
+
+    required_var_files = [
+      "${get_path_to_repo_root()}/common-config/terraform/${get_env("TF_VAR_env_name")}.json",
+    ]
+
     env_vars = {
-      TF_DATA_DIR         = format("%s/.terraform/%s", get_terragrunt_dir(), get_env("TF_VAR_env_name"))
-      TF_PLUGIN_CACHE_DIR = format("%s/.terraform.d/plugin-cache/", get_repo_root())
+      TF_DATA_DIR         = "${get_terragrunt_dir()}/.terraform/${get_env("TF_VAR_env_name")}"
+      TF_PLUGIN_CACHE_DIR = "${get_path_to_repo_root()}/.terraform.d/plugin-cache/"
     }
   }
 }
