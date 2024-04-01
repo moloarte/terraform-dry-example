@@ -3,11 +3,11 @@ include "root" {
 }
 
 inputs = {
-  tg_path_relative_from_root = path_relative_to_include("root")
-}
-
-include "additional_variables" {
-  path = format("%s/_sources/generated-files/additional-variables.hcl", get_path_to_repo_root())
+  tg_path_relative_from_root = get_path_to_repo_root()
+  environment_name           = get_env("TF_VAR_env_name")
+  region                     = local.environment_vars.inputs.region
+  profile                    = local.environment_vars.inputs.profile
+  remote_states_bucket       = local.environment_vars.inputs.bucket
 }
 
 remote_state {
