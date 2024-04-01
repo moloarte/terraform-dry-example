@@ -1,10 +1,13 @@
 locals {
-  environment_vars = read_terragrunt_config("${get_parent_terragrunt_dir()}/common-config/terragrunt/${get_env("TF_VAR_env_name")}.hcl")
+  environment_vars = read_terragrunt_config("${get_path_to_repo_root()}/common-config/terragrunt/${get_env("TF_VAR_env_name")}.hcl")
 }
 
 inputs = {
   tg_path_relative_from_root = path_relative_to_include("root")
-  environment                = get_env("TF_VAR_env_name")
+  environment_name           = get_env("TF_VAR_env_name")
+  region                     = local.environment_vars.inputs.region
+  profile                    = local.environment_vars.inputs.profile
+  remote_states_bucket       = local.environment_vars.inputs.bucket
 }
 
 remote_state {
@@ -32,7 +35,7 @@ terraform {
     ]
 
     env_vars = {
-      TF_DATA_DIR         = format("%s/.terraform/%s", get_terragrunt_dir(), get_env("TF_VAR_env_name"))
+      TF_DATA_DIR         = "${get_terragrunt_dir()}/.terraform/${get_env("TF_VAR_env_name")}"
       TF_PLUGIN_CACHE_DIR = "${get_parent_terragrunt_dir()}/.terraform.d/plugin-cache/"
     }
   }
@@ -55,15 +58,15 @@ terraform {
     ]
 
     optional_var_files = [
-      format("%s/config/%s.json", get_terragrunt_dir(), get_env("TF_VAR_env_name"))
+      "${get_terragrunt_dir()}/config/${get_env("TF_VAR_env_name")}.json"
     ]
 
     required_var_files = [
-      format("%s/common-config/terraform/%s.json", get_parent_terragrunt_dir(), get_env("TF_VAR_env_name")),
+      "${get_parent_terragrunt_dir()}/common-config/terraform/${get_env("TF_VAR_env_name")}.json",
     ]
 
     env_vars = {
-      TF_DATA_DIR         = format("%s/.terraform/%s", get_terragrunt_dir(), get_env("TF_VAR_env_name"))
+      TF_DATA_DIR         = "${get_terragrunt_dir()}/.terraform/${get_env("TF_VAR_env_name")}"
       TF_PLUGIN_CACHE_DIR = "${get_parent_terragrunt_dir()}/.terraform.d/plugin-cache/"
     }
   }
