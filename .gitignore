@@ -7,7 +7,7 @@
 *.tfstate.*
 
 # generated files
-generated*
+**/generated-*.tf
 
 # Crash log files
 crash.log
